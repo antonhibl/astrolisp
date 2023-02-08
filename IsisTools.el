@@ -1,11 +1,11 @@
 ;;; IsisTools.el --- Tool Suite for ISIS3 and ALE  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2015 Free Software Foundation, Inc.
+;; Copyright (C) 2023 Free Software Foundation, Inc.
 
 ;; Author: Anton Hibl
 ;; URL: https://github.com/antonhibl/Isis3Tools
 ;; Keywords: convenience, astrogeology
-;; Version: 1.3.4
+;; Version: 1.0.0
 ;; Package-Requires: ((emacs "28.2"))
 
 ;; This program is free software; you can redistribute it and/or modify
