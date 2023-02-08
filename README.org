@@ -1,0 +1,7 @@
+#+TITLE: IsisTools.el
+#+AUTHOR: Anton Hibl
+
+This is a set of tools and configurations for emacs intended for use with the
+ISIS3 and ALE software packages; these are primarily for astrogeology
+programming and research usage. Feel free to make a PR with any changes you find
+would be useful if you happen to also use this package.
