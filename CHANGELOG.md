@@ -34,3 +34,10 @@ and intention of the package more clearly.
 
 Added marci2isis, thm2isis, clem2isis, tgocassis2isis, pds2isis, caminfo, and
 cathist to available functions.
+
+### Changed
+**Date:** *Feb 24th, 2023*
+**Author:** *Anton Hibl*
+
+Updated README documentation to reflect package changes and added easier
+installation directions. Changed a few descriptions.
