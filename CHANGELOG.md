@@ -41,3 +41,9 @@ cathist to available functions.
 
 Updated README documentation to reflect package changes and added easier
 installation directions. Changed a few descriptions.
+
+### Added
+**Date:** *Feb 24th, 2023*
+**Author:** *Anton Hibl*
+
+Added skypt, csminit, and spicefit basic implementations.

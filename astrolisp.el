@@ -25,9 +25,9 @@
 
 ;; This package is essentially a set of functions and toolings for working with
 ;; astrogeology software such as ISIS3 and ALE in Emacs more locally with Lisp
-;; tools and functions for better debugging on errors using tools like gdb. It
+;; tools and functions for better debugging on errors using tools like gdb.  It
 ;; also allows for larger integration of these tools with Emacs which in turn
-;; allows the extensible platform to integrate in new ways into the software. 
+;; allows the extensible platform to integrate in new ways into the software.
 
 ;;; Code:
 
@@ -77,7 +77,7 @@ Argument FILENAME input cube file."
 ;; directly to a file because it is trivial to save a buffer to a file once
 ;; generated and this conserves generating unwanted label files/\.
 (defun astrolisp-catlab ()
-  "Interactive function to call label extractor."
+  "Calls label extractor and outputs in new buffer."
   (interactive)
   (let
       ;; the input cube file
@@ -86,29 +86,76 @@ Argument FILENAME input cube file."
     ;; call label extractor with provided args
     (astrolisp-extract-label from-file)))
 
+;; catoriglab
+(defun astrolisp-catoriglab ()
+  "Outputs the original labels of a cube."
+  (interactive)
+  (let (
+        ;; the input cube
+        (from-file
+         (read-file-name "from: "))
+        ;; the label to output
+        (to-file
+         (read-file-name "to: ")))
+    ;; run catoriglab with args
+    (async-shell-command
+     (format "catoriglab from=%s to=%s" from-file to-file))))
+
 ;; cathist
 (defun astrolisp-cathist ()
   "Outputs the full or brief history of a .cub file."
   (interactive)
   (let (
+        ;; the input cube file
         (from-file
          (read-file-name "from: "))
+        ;; output history information
         (to-file
-         (read-string "to :")))
+         (read-file-name "to :")))
+    ;; run cathist with args
     (async-shell-command
      (format "cathist from=%s to=%s" from-file to-file))))
 
+;; csminit
+(defun astrolisp-csminit ()
+  "Calls spiceinit on a image-cube file."
+  (interactive)
+  (let
+      ;; the input cube file
+      ((from
+        (read-file-name  "from: "))
+       (state
+        (read-string "csm state: "))
+       (isd
+        (read-file-name "ISD: ")))
+    ;; run spiceinit with args
+    (async-shell-command
+     (format "csminit from=%s isd=%S state=%s" from isd state))))
+
 ;; spiceinit
 (defun astrolisp-spiceinit ()
-  "Function to call spiceinit on a image-cube file."
+  "Calls spiceinit on a image-cube file."
   (interactive)
-  ;; the input cube file
   (let
+      ;; the input cube file
       ((from-file
         (read-file-name  "from: ")))
     ;; run spiceinit with args
     (async-shell-command
      (format "spiceinit from=%s" from-file))))
+
+;; spicefit
+;; requires spice initialization
+(defun astrolisp-spicefit ()
+  "Uses least squares to fit spacecraft pointing data to parabola."
+  (interactive)
+  (let (
+        ;; the cube to update
+        (from-file
+         (read-file-name "from: ")))
+    ;; run spicefit with arg
+    (async-shell-command
+     (format "spicefit from=%s" from-file))))
 
 ;; clem2isis
 (defun astrolisp-clem2isis ()
@@ -120,7 +167,7 @@ Argument FILENAME input cube file."
          (read-file-name "from: "))
         ; the filename for the output cube
         (to-file
-         (read-string "to: ")))
+         (read-file-name "to: ")))
     ;; run clem2isis with args
     (async-shell-command
      (format "clem2isis from=%s to=%s" from-file to-file))))
@@ -151,7 +198,7 @@ Argument FILENAME input cube file."
         ; the PDS4 CaSSIS formatted XML file containing image metadata
         (from-file (read-file-name "from: "))
         ; the filename for the output cube
-        (to-file (read-string "to: ")))
+        (to-file (read-file-name "to: ")))
     ;; run tgocassis2isis with args
     (async-shell-command
      (format "tgocassiss2isis from=%s to=%s" from-file to-file))))
@@ -164,7 +211,7 @@ Argument FILENAME input cube file."
         ; the input MRO MARCI image
         (from-file (read-file-name "from: "))
         ; the filename for the output cube
-        (to-file (read-string "to: ")))
+        (to-file (read-file-name "to: ")))
     ;; run marci2isis with args
     (async-shell-command
      (format "marci2isis from=%s to=%s" from-file to-file))))
@@ -177,7 +224,7 @@ Argument FILENAME input cube file."
         ; the input PDS Themis EDR/RDR file
         (from-file (read-file-name "from: "))
         ; the filename for the output isis cube
-        (to-file (read-string "to: ")))
+        (to-file (read-file-name "to: ")))
     ;; run thm2isis with args
     (async-shell-command
      (format "thm2isis from=%s to=%s" from-file to-file))))
@@ -190,16 +237,33 @@ Argument FILENAME input cube file."
 ;; options.  CSV format only allows Camstats, Statistics, and Geometry options. Isis
 ;; Label, Original Label, and Polygon options are disabled for CSV format.
 (defun astrolisp-caminfo ()
-"compiles & outputs the spacecraft & instrument data from a lvl-1 cube."
+  "Compiles & outputs the spacecraft & instrument data from a lvl-1 cube."
   (interactive)
   (let (
         ;; the input cube
         (from-file (read-file-name "from: "))
         ;; the output PVL file
-        (to-file (read-string "to: ")))
+        (to-file (read-file-name "to: ")))
     ;; run caminfo with args
     (async-shell-command
      (format "caminfo from=%s to=%s" from-file to-file))))
+
+;; skypt
+(defun astrolisp-skypt ()
+  "Converts between sample/line and ra/ dec positions"
+  (interactive)
+  (let (
+        ;; the input cube
+        (from
+         (read-file-name "from: "))
+        ;; the output list
+        (to
+         (read-file-name "to: "))
+        ;; output format
+        (format
+         (read-string "format: ")))
+    (async-shell-command
+     (format "skypt from=%s format=%s to=%s" from format to)))) 
 
 (provide 'astrolisp)
 ;;; astrolisp.el ends here
