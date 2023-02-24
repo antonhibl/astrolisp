@@ -8,18 +8,11 @@
 ;; Version: 0.1.0
 ;; Package-Requires: ((emacs "28.2"))
 
-;; This program is free software; you can redistribute it and/or modify
-;; it under the terms of the GNU General Public License as published by
-;; the Free Software Foundation, either version 3 of the License, or
-;; (at your option) any later version.
-
-;; This program is distributed in the hope that it will be useful,
-;; but WITHOUT ANY WARRANTY; without even the implied warranty of
-;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-;; GNU General Public License for more details.
-
-;; You should have received a copy of the GNU General Public License
-;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;;   __ _ ___| |_ _ __ ___ | (_)___ _ __ | |
+;;  / _` / __| __| '__/ _ \| | / __| '_ \| |
+;; | (_| \__ \ |_| | | (_) | | \__ \ |_) |_|
+;;  \__,_|___/\__|_|  \___/|_|_|___/ .__/(_)
+;;                                 |_|      
 
 ;;; Commentary:
 
@@ -115,62 +108,6 @@ Argument FILENAME input cube file."
     ;; run cathist with args
     (async-shell-command
      (format "cathist from=%s to=%s" from-file to-file))))
-
-;; csminit
-(defun astrolisp-csminit ()
-  "Calls spiceinit on a image-cube file."
-  (interactive)
-  (let
-      ;; the input cube file
-      ((from
-        (read-file-name  "from: "))
-       (state
-        (read-string "csm state: "))
-       (isd
-        (read-file-name "ISD: ")))
-    ;; run spiceinit with args
-    (async-shell-command
-     (format "csminit from=%s isd=%S state=%s" from isd state))))
-
-;; spiceinit
-(defun astrolisp-spiceinit ()
-  "Calls spiceinit on a image-cube file."
-  (interactive)
-  (let
-      ;; the input cube file
-      ((from-file
-        (read-file-name  "from: ")))
-    ;; run spiceinit with args
-    (async-shell-command
-     (format "spiceinit from=%s" from-file))))
-
-;; spicefit
-;; requires spice initialization
-(defun astrolisp-spicefit ()
-  "Uses least squares to fit spacecraft pointing data to parabola."
-  (interactive)
-  (let (
-        ;; the cube to update
-        (from-file
-         (read-file-name "from: ")))
-    ;; run spicefit with arg
-    (async-shell-command
-     (format "spicefit from=%s" from-file))))
-
-;; clem2isis
-(defun astrolisp-clem2isis ()
-  "Call clem2isis with the provided args."
-  (interactive)
-  (let (
-        ; the input Clementine image
-        (from-file
-         (read-file-name "from: "))
-        ; the filename for the output cube
-        (to-file
-         (read-file-name "to: ")))
-    ;; run clem2isis with args
-    (async-shell-command
-     (format "clem2isis from=%s to=%s" from-file to-file))))
 
 ;; pds2isis
 (defun astrolisp-pds2isis ()
