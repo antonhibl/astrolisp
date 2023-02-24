@@ -1,7 +1,35 @@
-#+TITLE: IsisTools.el
+#+TITLE: astrolisp.el
 #+AUTHOR: Anton Hibl
 
-This is a set of tools and configurations for emacs intended for use with the
-ISIS3 and ALE software packages; these are primarily for astrogeology
-programming and research usage. Feel free to make a PR with any changes you find
-would be useful if you happen to also use this package.
+* What is astrolisp?
+
+astrolisp is a set of tools and configurations for emacs intended for use with
+astrogeology software such as [[https://www.github.com/USGS-Astrogeology/ISIS3][ISIS3]] and [[https://www.github.com/USGS-Astrogeology/ale][ALE]]; these are primarily for astrogeology
+programming and research usage focused in the USGS software ecosystem.
+
+* How to use
+
+To install, currently all you have to do is clone this locally (best practice
+would be to store it in ~\~/.emacs.d/~), after this just add:
+
+#+begin_src emacs-lisp
+(load-file "~/.emacs.d/astrolisp/astrolisp.el")
+#+end_src
+
+to your init.el configuration. For further speed optimizations it is possible to
+byte compile this file for faster native runtime speeds; to do this run:
+
+#+begin_src emacs-lisp
+(byte-compile-file "~/.emacs.d/astrolisp/astrolisp.el")
+#+end_src
+
+and change the earlier ~load-file~ call to:
+
+#+begin_src emacs-lisp
+(load-file "~/.emacs.d/astrolisp/astrolisp.elc")
+#+end_src
+
+* Contributing
+
+Feel free to make a PR with any changes you find would be useful if you happen
+to also use this package or find extensible purposes for it.
