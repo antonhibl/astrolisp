@@ -47,3 +47,62 @@ installation directions. Changed a few descriptions.
 **Author:** *Anton Hibl*
 
 Added skypt, csminit, and spicefit basic implementations.
+
+### Changed
+**Date:** *Feb 24th, 2023*
+**Author:** *Anton Hibl*
+
+Changed project structure, going to hold different mission componenent, ale
+components, spice components, isis components, etc. in their own respective
+files(and folders in certain cases like ale, spice, and others) under /lisp
+which will help keep changes more delineated as the project expands and
+grows.
+
+Structure is as follows:
+
+astrolisp
+├── CHANGELOG.md
+├── LICENSE.md
+├── README.org
+├── astrolisp.el
+└── lisp
+    ├── UI.el
+    ├── ale.el
+    ├── isis3.el
+    ├── keybinds.el
+    ├── macros.el
+    ├── menubar.el
+    ├── metadata.el
+    ├── missions
+    │   ├── apollo.el
+    │   ├── cassini.el
+    │   ├── chandrayaan.el
+    │   ├── clementine.el
+    │   ├── clipper.el
+    │   ├── dawn.el
+    │   ├── galileo.el
+    │   ├── hayabusa.el
+    │   ├── juno.el
+    │   ├── kaguya.el
+    │   ├── lro.el
+    │   ├── mariner.el
+    │   ├── mer.el
+    │   ├── messenger.el
+    │   ├── mex.el
+    │   ├── mgs.el
+    │   ├── mro.el
+    │   ├── near.el
+    │   ├── newhorizons.el
+    │   ├── odyssey.el
+    │   ├── osirisrex.el
+    │   ├── rolo.el
+    │   ├── rosetta.el
+    │   ├── socet.el
+    │   ├── tgo.el
+    │   ├── viking.el
+    │   └── voyager.el
+    ├── pixel.el
+    ├── spice
+    │   ├── spice.el
+    └── usgscsm
+        └── csm.el
