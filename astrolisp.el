@@ -127,19 +127,6 @@ Argument FILENAME input cube file."
     (async-shell-command
      (format "pds2isis from=%s to=%s image=%s" from-file to-file img-file))))
 
-;; tgocassis2isis
-(defun astrolisp-tgocassis2isis ()
-  "Call tgocassis2isis with the provided args."
-  (interactive)
-  (let (
-        ; the PDS4 CaSSIS formatted XML file containing image metadata
-        (from-file (read-file-name "from: "))
-        ; the filename for the output cube
-        (to-file (read-file-name "to: ")))
-    ;; run tgocassis2isis with args
-    (async-shell-command
-     (format "tgocassiss2isis from=%s to=%s" from-file to-file))))
-
 ;; marci2isis
 (defun astrolisp-marci2isis ()
   "Call marci2isis with the provided args."
