@@ -187,7 +187,15 @@ Argument FILENAME input cube file."
         (format
          (read-string "format: ")))
     (async-shell-command
-     (format "skypt from=%s format=%s to=%s" from format to)))) 
+     (format "skypt from=%s format=%s to=%s" from format to))))
+
+;; use this by adding (astrolisp-load-all-el-files "/astrolisp/lisp directory path")
+(defun astrolisp-load-all-el-files (dir)
+  "Load all .el files in DIR and its sub-directories."
+  (interactive "DDirectory: ")
+  (let ((files (directory-files-recursively dir "\\.el\\'")))
+    (dolist (file files)
+      (load-file file))))
 
 (provide 'astrolisp)
 ;;; astrolisp.el ends here
